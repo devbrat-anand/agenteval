@@ -35,7 +35,7 @@ runs:
 
     - name: Install agenteval
       shell: bash
-      run: pip install agenteval-ai[all]
+      run: pip install "agenteval-ai[all]"
 
     - name: Run agenteval
       shell: bash

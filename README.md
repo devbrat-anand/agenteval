@@ -18,7 +18,7 @@ Meanwhile, your agent just hallucinated a refund policy, leaked a customer's SSN
 [Quickstart](#quickstart) · [Evaluators](#13-built-in-evaluators) · [Agent SDKs](#supported-agent-sdks) · [GitHub](https://github.com/devbrat-anand/agenteval)
 
 ```bash
-pip install agenteval-ai[all] && agenteval init && pytest tests/agent_evals/ -v
+pip install "agenteval-ai[all]" && agenteval init && pytest tests/agent_evals/ -v
 ```
 
 <img src="docs/demo.gif" alt="agenteval demo — running tests and seeing results" width="800">
@@ -67,7 +67,7 @@ def test_security(agent):
 ## Quickstart
 
 ```bash
-pip install agenteval-ai[all]
+pip install "agenteval-ai[all]"
 agenteval init
 ```
 
@@ -146,7 +146,7 @@ No API keys needed. Run LLM-as-judge evaluations entirely locally:
 
 ```bash
 ollama pull llama3.2
-pip install agenteval-ai[all]
+pip install "agenteval-ai[all]"
 agenteval run tests/agent_evals/ -v
 ```
 
@@ -246,7 +246,7 @@ pytest tests/agent_evals/ -v
 **Ollama (free, local) — recommended for getting started**
 ```bash
 ollama pull llama3.2
-pip install agenteval-ai[all]
+pip install "agenteval-ai[all]"
 # No config needed — auto-detected as default eval model
 ```
 
@@ -269,7 +269,7 @@ openai_api_key = "sk-custom"     # optional, depends on your server
 
 **AWS Bedrock**
 ```bash
-pip install agenteval-ai[bedrock]
+pip install "agenteval-ai[bedrock]"
 ```
 
 ```toml
