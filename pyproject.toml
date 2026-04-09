@@ -1,0 +1,112 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "agenteval-ai"
+version = "0.1.0"
+description = "pytest for AI agents — catch failures before production"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.10"
+authors = [
+    { name = "Devbrat Anand" },
+]
+keywords = ["ai", "agents", "testing", "evaluation", "pytest", "llm"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Framework :: Pytest",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Software Development :: Testing",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = [
+    "pytest>=7.0",
+    "httpx>=0.24",
+    "pydantic>=2.0",
+    "click>=8.0",
+    "rich>=13.0",
+    "tomli>=2.0; python_version < '3.11'",
+]
+
+[project.optional-dependencies]
+openai = ["openai>=1.0"]
+anthropic = ["anthropic>=0.20"]
+bedrock = ["boto3>=1.28"]
+ollama = ["ollama>=0.2"]
+mcp = ["mcp>=1.0"]
+all = [
+    "agenteval-ai[openai]",
+    "agenteval-ai[anthropic]",
+    "agenteval-ai[bedrock]",
+    "agenteval-ai[ollama]",
+    "agenteval-ai[mcp]",
+]
+dev = [
+    "ruff>=0.4",
+    "mypy>=1.10",
+    "pre-commit>=3.7",
+    "pytest-cov>=5.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/devbrat-anand/agenteval"
+Documentation = "https://devbrat-anand.github.io/agenteval"
+Repository = "https://github.com/devbrat-anand/agenteval"
+Issues = "https://github.com/devbrat-anand/agenteval/issues"
+
+[project.scripts]
+agenteval = "agenteval.cli.main:cli"
+
+[project.entry-points.pytest11]
+agenteval = "agenteval.pytest_plugin.plugin"
+
+[project.entry-points."agenteval.evaluators"]
+
+[project.entry-points."agenteval.interceptors"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/agenteval"]
+
+[tool.ruff]
+target-version = "py310"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "W", "UP", "B", "SIM"]
+
+[tool.mypy]
+python_version = "3.10"
+warn_unused_configs = true
+disallow_untyped_defs = false
+ignore_missing_imports = true
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = false
+
+[[tool.mypy.overrides]]
+module = [
+    "boto3.*",
+    "botocore.*",
+    "ollama.*",
+    "mcp.*",
+]
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-v --tb=short"
+
+[tool.coverage.run]
+source = ["agenteval"]
+branch = true
+
+[tool.coverage.report]
+fail_under = 40
+show_missing = true
