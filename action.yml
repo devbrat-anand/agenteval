@@ -1,5 +1,5 @@
-name: "agenteval"
-description: "Run agenteval agent tests and post results as PR comment"
+name: "agenteval-ai"
+description: "pytest for AI agents — run agenteval tests and post results as PR comment"
 branding:
   icon: "check-circle"
   color: "green"
